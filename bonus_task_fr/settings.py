@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from django.conf import settings
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +28,13 @@ SECRET_KEY = "django-insecure-8=fm6@jn247cikurgr@p5(5ppj=r9_furp@2&m7*w!of(66z$7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'myapp.apps.MyAppConfig',  # Регистрация с использованием пользовательского AppConfig
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,8 +58,7 @@ ROOT_URLCONF = "bonus_task_fr.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Здесь путь к папке templates на уровне проекта
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -116,7 +119,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -125,4 +131,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Настройки бота Telegram
-TELEGRAM_TOKEN = 'your_telegram_bot_token_here'
+TELEGRAM_TOKEN = '6820733704:AAEyp4Jck_3nHGE9_vzv8S0TL14OEcxKZ8s'
+
+TELEGRAM_CHAT_ID = '1179633741'
+
+chat_id = settings.TELEGRAM_CHAT_ID

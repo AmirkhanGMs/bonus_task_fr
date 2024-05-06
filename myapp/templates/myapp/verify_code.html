@@ -1,0 +1,6 @@
+<!-- templates/myapp/verify_code.html -->
+<form method="GET" action="{% url 'verify_code' %}">
+    <label for="code">Enter Verification Code:</label>
+    <input type="text" id="code" name="entered_code">
+    <input type="submit" value="Submit">
+</form>

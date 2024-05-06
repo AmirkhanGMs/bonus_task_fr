@@ -21,4 +21,5 @@ urlpatterns = [
     path('send-test/', views.send_test_message, name='send_test_message'),
     path('create_order/', views.create_order, name='create_order'),
     path('success/', views.success_view, name='success'),
+    path('verify_code/', views.verify_code, name='verify_code'),
 ]
